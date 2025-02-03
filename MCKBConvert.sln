@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MCKBConvert", "MCKBConvert.vcxproj", "{BA0E8B05-8A10-40CA-9AEE-5E13C5E0B829}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MCKBConvertTest", "..\MCKBConvertTest\MCKBConvertTest.vcxproj", "{76DD8937-B987-4329-B5A7-8175C9312A08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{BA0E8B05-8A10-40CA-9AEE-5E13C5E0B829}.Release|x64.Build.0 = Release|x64
 		{BA0E8B05-8A10-40CA-9AEE-5E13C5E0B829}.Release|x86.ActiveCfg = Release|Win32
 		{BA0E8B05-8A10-40CA-9AEE-5E13C5E0B829}.Release|x86.Build.0 = Release|Win32
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Debug|x64.ActiveCfg = Debug|x64
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Debug|x64.Build.0 = Debug|x64
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Debug|x86.ActiveCfg = Debug|Win32
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Debug|x86.Build.0 = Debug|Win32
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Release|x64.ActiveCfg = Release|x64
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Release|x64.Build.0 = Release|x64
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Release|x86.ActiveCfg = Release|Win32
+		{76DD8937-B987-4329-B5A7-8175C9312A08}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

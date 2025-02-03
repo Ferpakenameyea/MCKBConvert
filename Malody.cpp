@@ -92,7 +92,8 @@ Malody::MalodyChart* Malody::MalodyChart::FromJson(const rapidjson::Document& do
 	
 	chart->meta.creator = meta["creator"].GetString();
 	chart->meta.version = meta["version"].GetString();
-	
+	chart->meta.columnsCount = meta["mode_ext"].GetObject()["column"].GetInt();
+
 	auto song = meta["song"].GetObject();
 	chart->meta.song.title = song["title"].GetString();
 	chart->meta.song.artist = song["artist"].GetString();

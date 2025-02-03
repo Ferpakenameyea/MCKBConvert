@@ -24,6 +24,8 @@ namespace Malody
 		std::string creator;
 		std::string version;
 		Song song;
+
+		int columnsCount;
 	};
 	
 	class Note

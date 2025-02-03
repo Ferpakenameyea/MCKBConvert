@@ -64,7 +64,7 @@ int main()
 		std::cout << "Select which chart to translate: (index from 1 to " << level.charts.size() << ")" << std::endl;
 		int input;
 		std::cin >> input;
-		if (input < 0 || input >= level.charts.size())
+		if (input < 1 || input > level.charts.size())
 		{
 			std::cout << "Illegal index, please input index from 1 to " << level.charts.size() << std::endl;
 			continue;
@@ -72,14 +72,50 @@ int main()
 
 		auto chart = level.charts[input - 1];
 		KBBeatConvert::Converter converter;
-		int leftTrackSize = GetTrackSize("left");
-		int rightTrackSize = GetTrackSize("right");
+
+		int leftTrackSize;
+		int rightTrackSize;
+
+		while (true)
+		{
+			leftTrackSize = GetTrackSize("left");
+			rightTrackSize = GetTrackSize("right");
+			
+			if (leftTrackSize + rightTrackSize != chart->meta.columnsCount)
+			{
+				std::cout << "Error, your tracks should cover all malody columns (" << chart->meta.columnsCount << " columns)" << std::endl;
+				continue;
+			}
+
+			break;
+		}
 		KBBeat::Vector3 noteAppearPosition;
 		std::cout << "Input note appear position(Vector3 type). Example: 0 0 100" << std::endl;
 		std::cin >> noteAppearPosition.x >> noteAppearPosition.y >> noteAppearPosition.z;
-	
+
+		std::cout << "Any offset? (ms, input 0 to have no offset)" << std::endl;
+		float offset;
+		std::cin >> offset;	
 		std::cout << "Converting..." << std::endl;
 		auto kbbeatSet = converter.ConvertMCZToKBBeatPlayerSet(*chart, leftTrackSize, rightTrackSize, noteAppearPosition);
+		
+		if (offset != 0)
+		{
+			std::cout << "Applying offset..." << std::endl;
+			for (auto note : kbbeatSet->leftNotes)
+			{
+				note->strikeTime += offset / 1000;
+			}
+			for (auto note : kbbeatSet->rightNotes)
+			{
+				note->strikeTime += offset / 1000;
+			}
+		}
+		else
+		{
+			std::cout << "No offset" << std::endl;
+		}
+		
 		std::cout << "Writing to file..." << std::endl;
 		auto json = ToJsonString(kbbeatSet);
 		
@@ -104,7 +140,8 @@ void ListMalodyCharts(const Malody::MalodyLevel& level)
 		std::cout << index << ": [CHART] title: " << chart->meta.song.title
 			<< " artist: " << chart->meta.song.artist
 			<< " bpm: " << chart->meta.song.bpm
-			<< " version: " << chart->meta.version << std::endl;
+			<< " version: " << chart->meta.version
+			<< " columns: " << chart->meta.columnsCount << std::endl;
 		index++;
 	}
 }
